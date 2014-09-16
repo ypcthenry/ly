@@ -1,0 +1,286 @@
+***  Installation Started 11/09/2007 0:18  ***
+Title: Ã÷»ª°ÄººIC¿¨¶ÁÐ´Æ÷Çý¶¯ °²×°
+Source: D:\MWDP94.EXE | 11-09-2007 | 00:18:36 | 1484242
+Made Dir: C:\MWDP94
+File Copy: C:\MWDP94\UNWISE.EXE | 08-08-2002 | 23:40:48 | | 153088 | 833b8ad1
+RegDB Key: Software\Microsoft\Windows\CurrentVersion\Uninstall\Ã÷»ª°ÄººIC¿¨¶ÁÐ´Æ÷Çý¶¯
+RegDB Val: Ã÷»ª°ÄººIC¿¨¶ÁÐ´Æ÷Çý¶¯
+RegDB Name: DisplayName
+RegDB Root: 2
+RegDB Key: Software\Microsoft\Windows\CurrentVersion\Uninstall\Ã÷»ª°ÄººIC¿¨¶ÁÐ´Æ÷Çý¶¯
+RegDB Val: C:\MWDP94\UNWISE.EXE C:\MWDP94\INSTALL.LOG
+RegDB Name: UninstallString
+RegDB Root: 2
+File Copy: C:\MWDP94\readme.txt | 09-25-2001 | 14:36:30 | | 140 | c12f2917
+Made Dir: C:\MWDP94\Demo
+File Copy: C:\MWDP94\Demo\Demo.exe | 03-27-2007 | 13:30:06 | 65.1999.9.15 | 540672 | 4865fcf1
+File Copy: C:\MWDP94\Demo\DemoCpu.exe | 09-13-2001 | 09:15:10 | 1.0.0.1 | 249856 | 99b3fac3
+File Copy: C:\MWDP94\Demo\Mwic_32.dll | 03-26-2007 | 14:29:54 | | 180224 | 9417cb6
+File Copy: C:\MWDP94\Demo\mwrdhelp.chm | 08-30-2001 | 14:35:28 | | 86251 | 2af1b1a1
+File Copy: C:\MWDP94\Demo\SmartCos.hlp | 05-19-2000 | 16:53:04 | | 181690 | a93c4995
+File Copy: C:\MWDP94\Demo\¶à¿¨×ùDPÐÂÔöº¯Êý.txt | 01-23-2003 | 16:18:28 | | 1008 | 7f9e1c88
+Made Dir: C:\MWDP94\Drivers
+Made Dir: C:\MWDP94\Drivers\Unix
+File Copy: C:\MWDP94\Drivers\Unix\star500x | 08-18-2006 | 15:21:10 | | 391 | fd47e788
+Made Dir: C:\MWDP94\Drivers\Linux
+File Copy: C:\MWDP94\Drivers\Linux\star500x | 08-18-2006 | 15:22:34 | | 364 | e0cc729f
+Made Dir: C:\MWDP94\Examples
+Made Dir: C:\MWDP94\Examples\Unix
+File Copy: C:\MWDP94\Examples\Unix\Demoic.c | 09-20-1999 | 13:02:24 | | 9488 | 886ec9a4
+File Copy: C:\MWDP94\Examples\Unix\Democpu.c | 09-20-1999 | 13:02:50 | | 2389 | 759b4f68
+Made Dir: C:\MWDP94\Examples\Vc6
+Made Dir: C:\MWDP94\Examples\Vc6\res
+File Copy: C:\MWDP94\Examples\Vc6\res\mwic_rd.ico | 09-14-1999 | 17:18:14 | | 1078 | 120de4e4
+File Copy: C:\MWDP94\Examples\Vc6\res\mwic_rd.rc2 | 09-14-1999 | 17:18:14 | | 399 | 7ed4622e
+Made Dir: C:\MWDP94\Examples\Vb5
+Made Dir: C:\MWDP94\Examples\Vb5\Mc32_1604
+File Copy: C:\MWDP94\Examples\Vb5\Mc32_1604\Mc32_10.bas | 09-15-1999 | 13:57:46 | | 2579 | aad4812e
+Made Dir: C:\MWDP94\Examples\Vb5\Mc32_4442
+File Copy: C:\MWDP94\Examples\Vb5\Mc32_4442\Mc32_42.bas | 09-21-1999 | 09:32:48 | | 2155 | e0d6867b
+Made Dir: C:\MWDP94\Examples\Vb5\Mc32_4428
+File Copy: C:\MWDP94\Examples\Vb5\Mc32_4428\MC32_28.frm | 10-09-1999 | 09:02:48 | | 6633 | 499be308
+Made Dir: C:\MWDP94\Examples\Vb5\Mc32_24
+File Copy: C:\MWDP94\Examples\Vb5\Mc32_24\Mc32_24.vbp | 10-09-1999 | 09:13:44 | | 643 | ae58a66
+File Copy: C:\MWDP94\Examples\Vb5\Mc32_24\MC32_24.frm | 09-21-1999 | 17:14:12 | | 8938 | 9d07f796
+File Copy: C:\MWDP94\Examples\Vb5\Mc32_24\Mc32_24.bas | 09-13-1999 | 14:46:32 | | 3559 | f2219409
+File Copy: C:\MWDP94\Examples\Vb5\Mc32_4428\Mc32_gl.bas | 09-21-1999 | 09:20:10 | | 2031 | dc692405
+File Copy: C:\MWDP94\Examples\Vb5\Mc32_24\Mc32_gl.bas | 09-21-1999 | 09:07:36 | | 2016 | d08eadeb
+File Copy: C:\MWDP94\Examples\Vb5\Mc32_24\Mc32_24.vbw | 10-09-1999 | 09:14:32 | | 88 | e3de4f12
+File Copy: C:\MWDP94\Examples\Vb5\Mc32_4428\Mc32_28.bas | 09-13-1999 | 15:26:14 | | 2546 | c29268c7
+File Copy: C:\MWDP94\Examples\Vb5\Mc32_4442\Mc32_42.vbw | 07-18-2006 | 17:00:24 | | 110 | 663ad145
+File Copy: C:\MWDP94\Examples\Vb5\Mc32_4428\Mc32_28.vbp | 10-09-1999 | 09:04:14 | | 643 | 6ed91666
+File Copy: C:\MWDP94\Examples\Vb5\Mc32_4442\Mssccprj.scc | 08-01-2005 | 16:10:52 | | 192 | 5bfbe2f5
+File Copy: C:\MWDP94\Examples\Vb5\Mc32_4442\Mc32_gl.bas | 09-13-1999 | 11:13:58 | | 1551 | 97dd8532
+File Copy: C:\MWDP94\Examples\Vb5\Mc32_4428\Mc32_28.vbw | 10-09-1999 | 09:04:20 | | 88 | 6dc8c38e
+Made Dir: C:\MWDP94\Examples\Vb5\Mc32_102
+File Copy: C:\MWDP94\Examples\Vb5\Mc32_102\Mc32_gl.bas | 09-21-1999 | 09:34:54 | | 2134 | 20c7bde4
+File Copy: C:\MWDP94\Examples\Vb5\Mc32_102\Mc32_10.vbp | 10-09-1999 | 09:12:16 | | 643 | 9fc7f37e
+File Copy: C:\MWDP94\Drivers\Linux\mwic.so | 10-12-1999 | 10:28:02 | | 158146 | 236ffdcd
+File Copy: C:\MWDP94\Drivers\Linux\mwic.a | 08-18-2006 | 15:22:42 | | 141770 | bbe54643
+File Copy: C:\MWDP94\Drivers\Linux\mwic.h | 08-18-2006 | 15:22:24 | | 17894 | 41e0891d
+Made Dir: C:\MWDP94\Drivers\Foxpro.dos
+File Copy: C:\MWDP94\Drivers\Foxpro.dos\Mwic.plb | 06-08-2000 | 16:54:40 | | 85011 | 6173b58c
+Made Dir: C:\MWDP94\Drivers\foxbase
+File Copy: C:\MWDP94\Drivers\foxbase\mwic.bin | 10-06-1998 | 15:54:32 | | 2601 | 115dfd98
+Made Dir: C:\MWDP94\Drivers\c.lib
+File Copy: C:\MWDP94\Drivers\c.lib\Mwic.h | 10-11-1999 | 13:44:16 | | 11966 | 4c5231be
+File Copy: C:\MWDP94\Drivers\c.lib\mwicl.lib | 10-11-1999 | 16:24:10 | | 80896 | 74a0053a
+File Copy: C:\MWDP94\Drivers\c.lib\mwicm.lib | 10-11-1999 | 16:24:06 | | 79872 | 5af6f055
+Made Dir: C:\MWDP94\Drivers\windows.dll
+File Copy: C:\MWDP94\Drivers\windows.dll\Mwic_32.lib | 03-26-2007 | 14:29:54 | | 56144 | 7996e6e0
+File Copy: C:\MWDP94\Drivers\windows.dll\Mwic_32.dll | 03-26-2007 | 14:29:54 | | 180224 | 9417cb6
+File Copy: C:\MWDP94\Drivers\windows.dll\Mwic_32.h | 03-23-2007 | 15:21:02 | | 23220 | 696648f8
+File Copy: C:\MWDP94\Drivers\Unix\mwic.a | 08-18-2006 | 15:21:20 | | 130766 | f9b505a2
+File Copy: C:\MWDP94\Drivers\Unix\mwic.so | 10-12-1999 | 08:37:30 | | 87016 | 161e614f
+File Copy: C:\MWDP94\Drivers\Unix\mwic_ux.h | 08-18-2006 | 15:20:56 | | 17330 | abbc370b
+Made Dir: C:\MWDP94\Examples\VC++.net
+Made Dir: C:\MWDP94\Examples\VC++.net\mwic_rd
+File Copy: C:\MWDP94\Examples\VC++.net\mwic_rd\mwic_rd.ncb | 07-18-2006 | 17:16:12 | | 76800 | 49a1918
+File Copy: C:\MWDP94\Examples\VC++.net\mwic_rd\mwic_rd.sln | 07-18-2006 | 17:09:14 | | 911 | 81144516
+File Copy: C:\MWDP94\Examples\VC++.net\mwic_rd\mwic_rd.suo | 07-18-2006 | 17:16:12 | | 9216 | b904d16a
+Made Dir: C:\MWDP94\Examples\VC++.net\mwic_rd\mwic_rd
+File Copy: C:\MWDP94\Examples\VC++.net\mwic_rd\mwic_rd\mwic_rd.vcproj | 07-18-2006 | 17:13:18 | | 4763 | e2779239
+File Copy: C:\MWDP94\Examples\VC++.net\mwic_rd\mwic_rd\ReadMe.txt | 07-18-2006 | 17:09:10 | | 2675 | e6a99319
+File Copy: C:\MWDP94\Examples\VC++.net\mwic_rd\mwic_rd\mwic_rd.h | 09-14-1999 | 17:18:14 | | 1335 | 2ece1ac8
+File Copy: C:\MWDP94\Examples\VC++.net\mwic_rd\mwic_rd\mwic_rd.cpp | 09-15-1999 | 09:11:06 | | 2087 | b4842d98
+File Copy: C:\MWDP94\Examples\VC++.net\mwic_rd\mwic_rd\mwic_rdDlg.h | 11-24-2003 | 10:27:02 | | 2037 | a950f8d9
+File Copy: C:\MWDP94\Examples\VC++.net\mwic_rd\mwic_rd\mwic_rdDlg.cpp | 07-18-2006 | 17:14:46 | | 16252 | 5763d74a
+File Copy: C:\MWDP94\Examples\VC++.net\mwic_rd\mwic_rd\stdafx.h | 09-20-1999 | 16:48:24 | | 1056 | 6ba4414c
+File Copy: C:\MWDP94\Examples\VC++.net\mwic_rd\mwic_rd\stdafx.cpp | 09-14-1999 | 17:18:14 | | 209 | a06015e7
+File Copy: C:\MWDP94\Examples\VC++.net\mwic_rd\mwic_rd\Resource.h | 11-24-2003 | 10:35:12 | | 1294 | f82fc52f
+File Copy: C:\MWDP94\Examples\VC++.net\mwic_rd\mwic_rd\mwic_rd.rc | 08-24-2005 | 10:21:08 | | 6410 | 3bb8d634
+File Copy: C:\MWDP94\Examples\VC++.net\mwic_rd\mwic_rd\mwic_rd.aps | 07-18-2006 | 17:12:00 | | 43484 | 2d401f3c
+File Copy: C:\MWDP94\Examples\Vb5\Mc32_1604\Mc32_10.vbp | 10-09-1999 | 09:08:16 | | 643 | 9fc7f37e
+File Copy: C:\MWDP94\Examples\Vb5\Mc32_1604\MC32_10.frm | 10-09-1999 | 09:08:14 | | 7298 | 455866e9
+Made Dir: C:\MWDP94\Examples\VC++.net\mwic_rd\mwic_rd\res
+File Copy: C:\MWDP94\Examples\VC++.net\mwic_rd\mwic_rd\res\mwic_rd.rc2 | 09-14-1999 | 17:18:14 | | 399 | 7ed4622e
+File Copy: C:\MWDP94\Examples\VC++.net\mwic_rd\mwic_rd\res\mwic_rd.manifest | 07-18-2006 | 17:09:12 | | 696 | 7b3e449c
+File Copy: C:\MWDP94\Examples\VC++.net\mwic_rd\mwic_rd\res\mwic_rd.ico | 04-01-2003 | 19:36:54 | | 21630 | fac22279
+Made Dir: C:\MWDP94\Examples\VB.net
+Made Dir: C:\MWDP94\Examples\VB.net\mw_rdp
+File Copy: C:\MWDP94\Examples\VB.net\mw_rdp\mw_rdp.sln | 07-18-2006 | 11:18:48 | | 904 | ab2ed8fd
+File Copy: C:\MWDP94\Examples\VB.net\mw_rdp\mw_rdp.suo | 07-18-2006 | 15:18:06 | | 8704 | 91194437
+Made Dir: C:\MWDP94\Examples\VB.net\mw_rdp\mw_rdp
+File Copy: C:\MWDP94\Examples\VB.net\mw_rdp\mw_rdp\mw_rdp.vbproj | 07-18-2006 | 11:19:52 | | 4531 | 55214dab
+File Copy: C:\MWDP94\Examples\VB.net\mw_rdp\mw_rdp\AssemblyInfo.vb | 07-18-2006 | 11:18:48 | | 809 | 2feefeb0
+File Copy: C:\MWDP94\Examples\VB.net\mw_rdp\mw_rdp\Form1.vb | 07-18-2006 | 15:17:04 | | 19465 | 26d2c92e
+File Copy: C:\MWDP94\Examples\VB.net\mw_rdp\mw_rdp\Form1.resx | 07-18-2006 | 15:17:04 | | 21066 | fdd82a53
+File Copy: C:\MWDP94\Examples\VB.net\mw_rdp\mw_rdp\mw_rdp.vbproj.user | 07-18-2006 | 15:18:06 | | 1813 | 424a65e9
+File Copy: C:\MWDP94\Examples\VB.net\mw_rdp\mw_rdp\IC.vb | 07-18-2006 | 14:27:30 | | 2548 | 4296d7fa
+File Copy: C:\MWDP94\Examples\VB.net\mw_rdp\mw_rdp\IC4442.vb | 07-18-2006 | 14:15:02 | | 3100 | 735cd70e
+Made Dir: C:\MWDP94\Examples\Linux
+File Copy: C:\MWDP94\Examples\Linux\star500x | 08-18-2006 | 15:22:34 | | 364 | e0cc729f
+Made Dir: C:\MWDP94\Examples\VB.net\mw_rdp\mw_rdp\obj
+Made Dir: C:\MWDP94\Examples\VB.net\mw_rdp\mw_rdp\obj\Release
+File Copy: C:\MWDP94\Examples\VB.net\mw_rdp\mw_rdp\obj\Release\mw_rdp.Form1.resources | 07-18-2006 | 15:17:06 | | 16858 | 2137fd27
+File Copy: C:\MWDP94\Examples\VB.net\mw_rdp\mw_rdp\obj\Release\mw_rdp.exe | 07-18-2006 | 15:17:06 | 1.0.2390.27308 | 45056 | 7db4804e
+Made Dir: C:\MWDP94\Examples\VB.net\mw_rdp\mw_rdp\bin
+File Copy: C:\MWDP94\Examples\VB.net\mw_rdp\mw_rdp\bin\mw_rdp.exe | 07-18-2006 | 15:17:06 | 1.0.2390.27308 | 45056 | 7db4804e
+File Copy: C:\MWDP94\Examples\Unix\star500x | 08-18-2006 | 15:21:10 | | 391 | fd47e788
+Made Dir: C:\MWDP94\Examples\C#.net
+Made Dir: C:\MWDP94\Examples\C#.net\mw_rdp
+File Copy: C:\MWDP94\Examples\C#.net\mw_rdp\mw_rdp.sln | 07-17-2006 | 17:07:02 | | 904 | 58ceda0c
+File Copy: C:\MWDP94\Examples\C#.net\mw_rdp\mw_rdp.suo | 07-18-2006 | 15:21:22 | | 8704 | 1803de03
+Made Dir: C:\MWDP94\Examples\C#.net\mw_rdp\mw_rdp
+File Copy: C:\MWDP94\Examples\C#.net\mw_rdp\mw_rdp\mw_rdp.csproj | 07-17-2006 | 17:11:46 | | 5012 | b00e7798
+File Copy: C:\MWDP94\Examples\C#.net\mw_rdp\mw_rdp\Form1.cs | 07-18-2006 | 15:19:32 | | 16487 | 8c5afe7
+File Copy: C:\MWDP94\Examples\C#.net\mw_rdp\mw_rdp\Form1.resx | 07-18-2006 | 15:19:32 | | 21017 | f34bdaf4
+File Copy: C:\MWDP94\Examples\C#.net\mw_rdp\mw_rdp\AssemblyInfo.cs | 07-17-2006 | 17:07:02 | | 1859 | aea2ac4d
+File Copy: C:\MWDP94\Examples\C#.net\mw_rdp\mw_rdp\App.ico | 07-17-2006 | 17:07:02 | | 1078 | 9eca8a4e
+File Copy: C:\MWDP94\Examples\C#.net\mw_rdp\mw_rdp\mw_rdp.csproj.user | 07-18-2006 | 15:21:22 | | 1803 | 200b170e
+File Copy: C:\MWDP94\Examples\C#.net\mw_rdp\mw_rdp\IC.cs | 07-17-2006 | 17:37:20 | | 4046 | 477162da
+File Copy: C:\MWDP94\Examples\C#.net\mw_rdp\mw_rdp\IC4442.cs | 07-17-2006 | 17:16:56 | | 3482 | 8494911a
+Made Dir: C:\MWDP94\Examples\C#.net\mw_rdp\mw_rdp\obj
+Made Dir: C:\MWDP94\Examples\C#.net\mw_rdp\mw_rdp\obj\Release
+File Copy: C:\MWDP94\Examples\C#.net\mw_rdp\mw_rdp\obj\Release\mw_rdp.projdata | 07-18-2006 | 15:21:22 | | 11912 | 202d1582
+File Copy: C:\MWDP94\Examples\Vb5\Mc32_102\MC32_10.frm | 10-09-1999 | 09:12:16 | | 7183 | b7d22fe4
+File Copy: C:\MWDP94\Examples\C#.net\mw_rdp\mw_rdp\obj\Release\mw_rdp.Form1.resources | 07-18-2006 | 15:19:56 | | 16858 | 99aca2e8
+File Copy: C:\MWDP94\Examples\C#.net\mw_rdp\mw_rdp\obj\Release\mw_rdp.exe | 07-18-2006 | 15:19:56 | 1.0.2390.27597 | 40960 | 6bfb7685
+File Copy: C:\MWDP94\Examples\Vb5\Mc32_102\Mc32_10.bas | 09-14-1999 | 10:04:40 | | 2466 | ec91b88a
+File Copy: C:\MWDP94\Examples\Vb5\Mc32_1604\Mc32_gl.bas | 09-21-1999 | 09:14:10 | | 2134 | 20c7bde4
+Made Dir: C:\MWDP94\Examples\C#.net\mw_rdp\mw_rdp\bin
+Made Dir: C:\MWDP94\Examples\C#.net\mw_rdp\mw_rdp\bin\Release
+File Copy: C:\MWDP94\Examples\C#.net\mw_rdp\mw_rdp\bin\Release\mw_rdp.exe | 07-18-2006 | 15:19:56 | 1.0.2390.27597 | 40960 | 6bfb7685
+Made Dir: C:\MWDP94\Examples\Foxpro.dos
+Made Dir: C:\MWDP94\Examples\Foxpro.dos\cpu
+File Copy: C:\MWDP94\Examples\Foxpro.dos\cpu\Cpudemo.prg | 03-26-1999 | 08:26:08 | | 897 | 430f1340
+Made Dir: C:\MWDP94\Examples\Foxpro.dos\fox102
+File Copy: C:\MWDP94\Examples\Foxpro.dos\fox102\fox102.prg | 09-17-1999 | 11:30:04 | | 1835 | 6cb0c584
+Made Dir: C:\MWDP94\Examples\Foxpro.dos\fox1604
+File Copy: C:\MWDP94\Examples\Foxpro.dos\fox1604\fox1604.prg | 09-17-1999 | 11:10:32 | | 1879 | 5e1ed55c
+Made Dir: C:\MWDP94\Examples\Foxpro.dos\fox24c
+File Copy: C:\MWDP94\Examples\Foxpro.dos\fox24c\24c.prg | 09-17-1999 | 11:13:54 | | 1574 | 6e92a5c2
+Made Dir: C:\MWDP94\Examples\Foxpro.dos\fox4428
+File Copy: C:\MWDP94\Examples\Foxpro.dos\fox4428\fox4428.prg | 09-17-1999 | 11:12:10 | | 1912 | 57da6ac3
+Made Dir: C:\MWDP94\Examples\Pb5
+File Copy: C:\MWDP94\Examples\Pb5\Mc32glp.pbl | 09-21-1999 | 10:25:54 | | 137216 | 195465a2
+Made Dir: C:\MWDP94\Examples\Delphi3
+Made Dir: C:\MWDP94\Examples\Delphi3\Mc32_gl
+File Copy: C:\MWDP94\Examples\Delphi3\Mc32_gl\Mc32_gld.dpr | 09-09-1998 | 17:29:32 | | 200 | 56fe3fbc
+File Copy: C:\MWDP94\Examples\Delphi3\Mc32_gl\MC32_GLP.dfm | 09-24-1998 | 10:16:16 | | 1028 | 4eb74aad
+File Copy: C:\MWDP94\Examples\Delphi3\Mc32_gl\MC32_GLP.pas | 10-12-1999 | 08:53:36 | | 6512 | ecc8432f
+Made Dir: C:\MWDP94\Examples\Delphi3\Mc32_cpu
+File Copy: C:\MWDP94\Examples\Delphi3\Mc32_cpu\Mc32_gld.dpr | 09-09-1998 | 17:29:32 | | 200 | 56fe3fbc
+File Copy: C:\MWDP94\Examples\Delphi3\Mc32_cpu\MC32_GLP.dfm | 09-20-1999 | 16:47:18 | | 1024 | 9676c1bb
+File Copy: C:\MWDP94\Examples\Delphi3\Mc32_cpu\MC32_GLP.pas | 09-21-1999 | 15:36:52 | | 4572 | 359ac2e7
+Made Dir: C:\MWDP94\Examples\Delphi3\Mc32_93
+File Copy: C:\MWDP94\Examples\Delphi3\Mc32_93\Mc32_93d.dpr | 08-15-1998 | 08:36:30 | | 194 | c41c2845
+File Copy: C:\MWDP94\Examples\Delphi3\Mc32_93\MC32_93p.dfm | 10-26-1998 | 16:06:32 | | 712 | 2896ea81
+File Copy: C:\MWDP94\Examples\Delphi3\Mc32_93\MC32_93p.pas | 09-13-1999 | 15:49:52 | | 6134 | 1a27a825
+Made Dir: C:\MWDP94\Examples\Delphi3\Mc32_45
+File Copy: C:\MWDP94\Examples\Delphi3\Mc32_45\Mc32_45d.dpr | 08-14-1998 | 17:10:02 | | 200 | 3f95a105
+File Copy: C:\MWDP94\Examples\Delphi3\Mc32_45\MC32_45p.dfm | 09-14-1999 | 08:22:00 | | 722 | 11691a5f
+File Copy: C:\MWDP94\Examples\Delphi3\Mc32_45\MC32_45p.pas | 09-14-1999 | 08:52:10 | | 6107 | 410830c6
+Made Dir: C:\MWDP94\Examples\Delphi3\Mc32_42
+File Copy: C:\MWDP94\Examples\Delphi3\Mc32_42\Mc32_42d.dpr | 08-14-1998 | 11:14:50 | | 200 | 280c8797
+File Copy: C:\MWDP94\Examples\Delphi3\Mc32_42\MC32_42p.dfm | 09-14-1999 | 08:54:04 | | 721 | 2a110164
+File Copy: C:\MWDP94\Examples\Delphi3\Mc32_42\MC32_42p.pas | 09-14-1999 | 10:14:58 | | 8199 | a6c0be97
+Made Dir: C:\MWDP94\Examples\Delphi3\Mc32_28
+File Copy: C:\MWDP94\Examples\Delphi3\Mc32_28\Mc32_42d.dpr | 08-14-1998 | 11:14:50 | | 200 | 280c8797
+File Copy: C:\MWDP94\Examples\Delphi3\Mc32_28\MC32_42p.dfm | 09-14-1999 | 14:19:04 | | 721 | 71b2f860
+File Copy: C:\MWDP94\Examples\Delphi3\Mc32_28\MC32_42p.pas | 09-14-1999 | 14:13:02 | | 8190 | 68d59e1e
+Made Dir: C:\MWDP94\Examples\Delphi3\Mc32_24
+File Copy: C:\MWDP94\Examples\Delphi3\Mc32_24\Mc32_24d.dpr | 09-09-1998 | 17:10:28 | | 194 | 2f2fce98
+File Copy: C:\MWDP94\Examples\Delphi3\Mc32_24\MC32_24p.dfm | 10-26-1998 | 17:21:12 | | 716 | 7f254161
+File Copy: C:\MWDP94\Examples\Delphi3\Mc32_24\MC32_24p.pas | 09-13-1999 | 15:47:38 | | 6471 | c9d9ea09
+Made Dir: C:\MWDP94\Examples\Delphi3\Mc32_1604
+File Copy: C:\MWDP94\Examples\Delphi3\Mc32_1604\Mc32_10d.dpr | 08-14-1998 | 13:55:36 | | 194 | 8306dcdd
+File Copy: C:\MWDP94\Examples\Delphi3\Mc32_1604\MC32_10p.dfm | 09-14-1999 | 10:18:26 | | 713 | e410c2f7
+File Copy: C:\MWDP94\Examples\Delphi3\Mc32_1604\MC32_10p.pas | 09-14-1999 | 10:46:54 | | 8689 | 5c085829
+Made Dir: C:\MWDP94\Examples\Delphi3\Mc32_102
+File Copy: C:\MWDP94\Examples\Delphi3\Mc32_102\Mc32_10d.dpr | 08-14-1998 | 13:55:36 | | 194 | 8306dcdd
+File Copy: C:\MWDP94\Examples\Delphi3\Mc32_102\MC32_10p.dfm | 09-13-1999 | 13:47:58 | | 711 | af24c44b
+File Copy: C:\MWDP94\Examples\Delphi3\Mc32_102\MC32_10p.pas | 09-14-1999 | 11:01:32 | | 8757 | cc6472c3
+Made Dir: C:\MWDP94\Examples\Delphi3\Mc32_04
+File Copy: C:\MWDP94\Examples\Delphi3\Mc32_04\Mc32_06d.dpr | 08-14-1998 | 16:00:14 | | 200 | aefee2b1
+File Copy: C:\MWDP94\Examples\Delphi3\Mc32_04\MC32_06p.dfm | 11-06-1998 | 10:58:28 | | 719 | cdb48be2
+File Copy: C:\MWDP94\Examples\Delphi3\Mc32_04\MC32_06p.pas | 09-14-1999 | 11:23:52 | | 6331 | 355247c1
+Made Dir: C:\MWDP94\Examples\Vfp
+Made Dir: C:\MWDP94\Examples\Vfp\Mc32_102
+File Copy: C:\MWDP94\Examples\Vfp\Mc32_102\rd32_102.prg | 09-15-1999 | 11:38:02 | | 3887 | 35189b28
+Made Dir: C:\MWDP94\Examples\Vfp\Mc32_1604
+File Copy: C:\MWDP94\Examples\Vfp\Mc32_1604\rd32_1604.PRG | 09-15-1999 | 13:53:04 | | 3981 | 256efe85
+Made Dir: C:\MWDP94\Examples\Vfp\Mc32_24
+File Copy: C:\MWDP94\Examples\Vfp\Mc32_24\rd32_24.prg | 09-22-1999 | 10:27:44 | | 2732 | 75588aac
+File Copy: C:\MWDP94\Examples\Vfp\Mc32_24\rd32_24.FXP | 09-22-1999 | 10:27:56 | | 2536 | 4e509c24
+Made Dir: C:\MWDP94\Examples\Vfp\Mc32_28
+File Copy: C:\MWDP94\Examples\Vfp\Mc32_28\rd32_28.prg | 09-15-1999 | 14:04:36 | | 3448 | 662997c1
+Made Dir: C:\MWDP94\Examples\Vfp\Mc32_42
+File Copy: C:\MWDP94\Examples\Vfp\Mc32_42\rd32_42.prg | 09-15-1999 | 09:00:28 | | 3307 | 8d3787ae
+File Copy: C:\MWDP94\Examples\Vfp\Mc32_42\rd32_42.FXP | 09-22-1999 | 09:43:06 | | 3002 | 3e12ed0b
+Made Dir: C:\MWDP94\Examples\Vfp\Mc32_cpu
+File Copy: C:\MWDP94\Examples\Vfp\Mc32_cpu\cpudemo.PRG | 09-22-1999 | 09:36:10 | | 2101 | 60c022a7
+File Copy: C:\MWDP94\Examples\Vfp\Mc32_cpu\cpudemo.FXP | 09-22-1999 | 09:36:14 | | 2067 | b84add9b
+Made Dir: C:\MWDP94\Examples\Vfp\Mc32_gl
+File Copy: C:\MWDP94\Examples\Vfp\Mc32_gl\rd32_gl.PRG | 10-12-1999 | 08:46:42 | | 3167 | a4827d1c
+File Copy: C:\MWDP94\Examples\Vfp\Mc32_gl\rd32_gl.FXP | 10-12-1999 | 08:46:42 | | 2743 | 23fb54c
+Made Dir: C:\MWDP94\Examples\c.dos
+File Copy: C:\MWDP94\Examples\c.dos\Testgl.cpp | 09-15-1999 | 16:33:10 | | 3106 | 9c8e8a91
+File Copy: C:\MWDP94\Examples\c.dos\Test24.cpp | 09-15-1999 | 16:39:26 | | 5863 | 6aef187e
+File Copy: C:\MWDP94\Examples\c.dos\Democpu.cpp | 03-26-1999 | 08:30:18 | | 1660 | c0d474da
+File Copy: C:\MWDP94\Examples\c.dos\Chkcard.cpp | 09-17-1999 | 09:27:44 | | 8928 | 204ec488
+File Copy: C:\MWDP94\Examples\Linux\democpu.c | 09-27-1999 | 13:22:02 | | 2380 | 3896ed1
+File Copy: C:\MWDP94\Examples\Linux\demoic.c | 09-27-1999 | 13:22:10 | | 9651 | 6ae2c398
+Made Dir: C:\MWDP94\Examples\Vb5\Mc32_gl
+File Copy: C:\MWDP94\Examples\Vb5\Mc32_gl\Mc32_gl.bas | 09-20-1999 | 17:27:48 | | 2543 | a6c65dbd
+File Copy: C:\MWDP94\Examples\Vb5\Mc32_gl\MC32_gl.frm | 10-09-1999 | 08:41:14 | | 6058 | 40675b20
+File Copy: C:\MWDP94\Examples\Vb5\Mc32_gl\Mc32_gl.vbp | 10-09-1999 | 08:41:14 | | 615 | efb936ae
+Made Dir: C:\MWDP94\Examples\Vb5\Mc32_cpu
+File Copy: C:\MWDP94\Examples\Vb5\Mc32_cpu\cpu_32.frm | 10-09-1999 | 08:48:04 | | 4118 | c2e4e156
+File Copy: C:\MWDP94\Examples\Vb5\Mc32_cpu\Cpu_32.vbp | 10-09-1999 | 08:48:16 | | 617 | 82fdce27
+File Copy: C:\MWDP94\Examples\Vb5\Mc32_cpu\Cpu_32.vbw | 10-09-1999 | 08:48:18 | | 74 | d20b7529
+File Copy: C:\MWDP94\Examples\Vb5\Mc32_cpu\Mwic32.bas | 03-25-1999 | 14:35:56 | | 2982 | 3a569361
+Made Dir: C:\MWDP94\Examples\Vb5\Mc32_45
+File Copy: C:\MWDP94\Examples\Vb5\Mc32_45\MC32_45.frm | 10-09-1999 | 08:59:48 | | 4360 | 5f2703c7
+File Copy: C:\MWDP94\Examples\Vb5\Mc32_45\Mc32_45.vbp | 10-09-1999 | 08:59:48 | | 649 | 7fe664e4
+File Copy: C:\MWDP94\Examples\Vb5\Mc32_45\Mc32_gl.bas | 09-21-1999 | 09:16:38 | | 2035 | 1295e136
+File Copy: C:\MWDP94\Examples\Vb5\Mc32_45\Mc3245.bas | 09-13-1999 | 16:50:44 | | 856 | e956ccbf
+File Copy: C:\MWDP94\Examples\Vb5\Mc32_4442\MC32_42.frm | 07-29-2005 | 21:20:52 | | 5925 | 34643535
+File Copy: C:\MWDP94\Examples\Vb5\Mc32_4442\Mc32_42.vbp | 07-29-2005 | 21:20:52 | | 706 | bb65254e
+File Copy: C:\MWDP94\Examples\Vc6\mwic_rd.aps | 08-24-2005 | 10:21:08 | | 36784 | d14913dd
+File Copy: C:\MWDP94\Examples\Vc6\mwic_rd.clw | 08-24-2005 | 10:29:42 | | 1559 | 7d42d5cd
+File Copy: C:\MWDP94\Examples\Vc6\mwic_rd.cpp | 09-15-1999 | 09:11:06 | | 2087 | b4842d98
+File Copy: C:\MWDP94\Examples\Vc6\mwic_rd.dsp | 09-14-1999 | 17:45:36 | | 4303 | edc8add
+File Copy: C:\MWDP94\Examples\Vc6\mwic_rd.dsw | 09-14-1999 | 17:18:16 | | 537 | 4d4fc5d
+File Copy: C:\MWDP94\Examples\Vc6\mwic_rd.h | 09-14-1999 | 17:18:14 | | 1335 | 2ece1ac8
+File Copy: C:\MWDP94\Examples\Vc6\mwic_rd.ncb | 08-24-2005 | 10:30:34 | | 66560 | 8827882e
+File Copy: C:\MWDP94\Examples\Vc6\mwic_rd.opt | 08-24-2005 | 10:30:32 | | 83968 | 5dfe5964
+File Copy: C:\MWDP94\Examples\Vc6\mwic_rd.plg | 08-24-2005 | 10:26:12 | | 695 | 5bc42ef
+File Copy: C:\MWDP94\Examples\Vc6\mwic_rd.rc | 08-24-2005 | 10:21:08 | | 6410 | 3bb8d634
+File Copy: C:\MWDP94\Examples\Vc6\mwic_rdDlg.cpp | 11-24-2003 | 10:57:46 | | 16235 | 45300ec6
+File Copy: C:\MWDP94\Examples\Vc6\mwic_rdDlg.h | 11-24-2003 | 10:27:02 | | 2037 | a950f8d9
+File Copy: C:\MWDP94\Examples\Vc6\resource.h | 11-24-2003 | 10:35:12 | | 1294 | f82fc52f
+File Copy: C:\MWDP94\Examples\Vc6\StdAfx.cpp | 09-14-1999 | 17:18:14 | | 209 | a06015e7
+File Copy: C:\MWDP94\Examples\Vc6\StdAfx.h | 09-20-1999 | 16:48:24 | | 1056 | 6ba4414c
+Shell Link: C:\Users\lenovo\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\MWDP93\Demo.lnk
+Link Info: C:\MWDP94\UNWISE.EXE |  | C:\MWDP94\Demo\Demo.exe | 0 | 1 | 0 | /W1 "C:\MWDP94\INSTALL.LOG"
+Shell Link: C:\Users\lenovo\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\MWDP93\DemoCpu.lnk
+Link Info: C:\MWDP94\Demo\DemoCpu.exe |  |  | 0 | 1 | 0 | 
+Shell Link: C:\Users\lenovo\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\MWDP93\Unwise.lnk
+Link Info: C:\MWDP94\UNWISE.EXE |  |  | 0 | 1 | 0 | 
+INI New: Created INI
+RegDB Key: Software\Microsoft\Windows\CurrentVersion\Uninstall\Ã÷»ª°ÄººIC¿¨¶ÁÐ´Æ÷Çý¶¯
+RegDB Val: 9.4
+RegDB Name: DisplayVersion
+RegDB Root: 2
+RegDB Key: Software\Microsoft\Windows\CurrentVersion\Uninstall\Ã÷»ª°ÄººIC¿¨¶ÁÐ´Æ÷Çý¶¯
+RegDB Val: mwrdhelp
+RegDB Name: HelpLink
+RegDB Root: 2
+RegDB Key: Software\Microsoft\Windows\CurrentVersion\Uninstall\Ã÷»ª°ÄººIC¿¨¶ÁÐ´Æ÷Çý¶¯
+RegDB Val: 0755-83566128
+RegDB Name: HelpTelephone
+RegDB Root: 2
+RegDB Key: Software\Microsoft\Windows\CurrentVersion\Uninstall\Ã÷»ª°ÄººIC¿¨¶ÁÐ´Æ÷Çý¶¯
+RegDB Val: Ã÷»ª°Äººµç×ÓÉè±¸ÓÐÏÞ¹«Ë¾
+RegDB Name: Publisher
+RegDB Root: 2
+RegDB Key: Software\Microsoft\Windows\CurrentVersion\Uninstall\Ã÷»ª°ÄººIC¿¨¶ÁÐ´Æ÷Çý¶¯
+RegDB Val: http://www.mwreader.com
+RegDB Name: URLInfoAbout
+RegDB Root: 2
+RegDB Key: Software\Microsoft\Windows\CurrentVersion\Uninstall\Ã÷»ª°ÄººIC¿¨¶ÁÐ´Æ÷Çý¶¯
+RegDB Val: 1
+RegDB Name: NoRemove
+RegDB Root: 2
+User Rights: Admin

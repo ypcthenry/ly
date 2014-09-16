@@ -1,0 +1,763 @@
+﻿//判断是否为蓝焰IC卡
+function IsLYCard(port:byte;br:integer;var EDes:pchar):Integer;stdcall;
+var
+  sid,strE:string;
+  iyr:integer;
+begin
+  if icdev<=0 then
+    icdev:=auto_init(port,br);
+  if icdev<0 then
+  begin
+    EDes:=PChar('写卡器未连接');
+    Result:=1;
+    Exit;
+  end;
+  if not ReadCardID(sid,strE) then
+  begin
+    EDes:=pchar(strE);
+    Result:=ecode;
+    Exit;
+  end;
+  //判断sid是否为蓝焰格式
+  {if sid='FFFFFFFFFFFF' then
+  begin
+    EDes:=PChar('非蓝焰IC卡');
+    Result:=14;
+    Exit;
+  end;        }
+  if not TryStrToInt(Copy(sid,3,2),iyr) then
+  begin
+    EDes:=PChar('非蓝焰IC卡');
+    Result:=14;
+    Exit;
+  end;
+  if (iyr<0) or (iyr>99) then
+  begin
+    EDes:=PChar('非蓝焰IC卡');
+    Result:=14;
+    Exit;
+  end;
+  Result:=0;
+end;
+
+//1.	写密码传递卡
+function WritePCard(port:byte;br:integer;ickh:PChar;icpsw:pchar;
+   gasvalue:double;fc:byte;sum:integer;var EDes:pchar):Integer;stdcall;
+var
+   strE:string;
+   iYwbh:Integer;
+begin
+  if icdev<=0 then
+    icdev:=auto_init(port,br);
+  if icdev<=0 then
+  begin
+    EDes:=PChar('写卡器未连接');
+    Result:=1;
+    Exit;
+  end;
+  if not TryStrToInt(Trim(ickh),iYwbh) then
+  begin
+    EDes:=PChar('卡用户编号错误');
+    Result:=13;
+    Exit;
+  end;
+  if not WriteUserCard(iYwbh,gasvalue,fc,sum,icpsw,true,strE) then
+  begin
+    EDes:=PChar(strE);
+    Result:=ecode;
+    Exit;
+  end;
+  Result:=0;
+end;
+
+//2.写正常充值卡
+function WriteUCard(port:byte;br:integer;ickh:PChar;icpsw:pchar;
+    gasvalue:double;fc:byte;var EDes:pchar):Integer;stdcall;
+var
+  strE:string;
+  iYwbh:Integer;
+begin
+  if icdev<=0 then
+    icdev:=auto_init(port,br);
+  if icdev<=0 then
+  begin
+    EDes:=PChar('写卡器未连接');
+    Result:=1;
+    Exit;
+  end;
+  if not TryStrToInt(Trim(ickh),iYwbh) then
+  begin
+    EDes:=PChar('卡用户编号错误');
+    Result:=13;
+    Exit;
+  end;
+  if not WriteUserCard(iYwbh,gasvalue,fc,0,icpsw,false,strE) then
+  begin
+    EDes:=PChar(strE);
+    Result:=ecode;
+    Exit;
+  end;
+  Result:=0;
+end;
+
+
+//3.读用户卡
+function ReadUCard(port:byte;br:integer;var id:PChar;var ickh:PChar;
+    var gasvalue:PChar;var fc:PChar;var tpsw:PChar;var factoryID:pchar;var EDes:PChar):integer;StdCall;
+const
+   facID:string='0000';
+var
+  str,strE,cid:String;
+  iYwbh:Integer;
+  gGasValue:Double;
+  bqcs:Byte;
+  mmcd:Boolean;
+begin
+  if icdev<=0 then
+    icdev:=auto_init(port,br);
+  if icdev<=0 then
+  begin
+    EDes:=PChar('写卡器未连接');
+    Result:=1;
+    Exit;
+  end;
+  if not ReadUserCard(cid,iYwbh,gGasValue,bqcs,mmcd,strE) then
+  begin
+    EDes:=PChar(strE);
+    Result:=ecode;
+    Exit;
+  end;
+  factoryID:=PChar(facID);
+
+  id:=PChar(cid);
+  str:=trim(inttostr(iywbh));
+  str:=StringOfChar('0',8-length(str))+str;
+  ickh:=PChar(str);
+  gasvalue:=PChar(Trim(FloatToStr(gGasValue)));
+  fc:=PChar(IntToStr(bqcs));
+  if mmcd=true then
+    tpsw:='1'
+  else
+    tpsw:='0';
+  Result:=0;
+end;
+
+//4.初始化卡
+function InitCard(port:byte;br:integer;icpsw:pchar;out EDes:PChar):Integer;StdCall;
+var strE:String;
+begin
+  if icdev<=0 then
+    icdev:=auto_init(port,br);
+  if icdev<=0 then
+  begin
+    EDes:=PChar('写卡器未连接');
+    Result:=1;
+    Exit;
+  end;
+  if not InitICCard(icpsw,strE) then
+  begin
+    EDes:=PChar(strE);
+    Result:=ecode;
+    Exit;
+  end;
+  Result:=0;
+end;
+
+//5.新卡核对
+function NewCardCheck(port:byte;br:integer;var EDes:pchar):Integer;stdcall;
+var
+  strE:string;
+begin
+  if icdev<=0 then
+    icdev:=auto_init(port,br);
+  if icdev<=0 then
+  begin
+    EDes:=PChar('写卡器未连接');
+    Result:=1;
+    Exit;
+  end;
+  if not CheckNewCard(strE) then
+  begin
+    EDes:=PChar(strE);
+    Result:=ecode;
+    Exit;
+  end;
+  Result:=0;
+end;
+
+//6.核对IC卡密码
+function CheckPsw(port:byte;br:integer;icpsw:pchar;out EDes:pchar):integer;stdcall;
+var
+  strE:string;
+begin
+  if icdev<=0 then
+    icdev:=auto_init(port,br);
+  if icdev<=0 then
+  begin
+    EDes:=pchar('写卡器未连接');
+    Result:=1;
+    Exit;
+  end;
+  if not CheckICPswd(icpsw,strE) then
+  begin
+    EDes:=PChar(strE);
+    Result:=ecode;
+    Exit;
+  end;
+  Result:=0;
+end;
+/////    以上为需要公开的的函数接口
+exports
+  IsLYCard,
+  WritePCard,
+  WriteUCard,
+  ReadUCard ,
+  InitCard,
+  NewCardCheck,
+  CheckPsw;
+/////  	以上使用的函数在下面的代码中
+
+
+
+unit unitMWRW;
+
+interface
+uses SysUtils,StrUtils,unitMWIC;
+
+  function WriteUserCard(bh:integer;ql:Double;bqcs:Byte;srzl:integer;
+            psw:string;mmcd:Boolean;out ErrorDes:string): Boolean;
+  function ReadCardID(var id:string;out ErrorDes:string):Boolean;          
+  function ReadUserCard(var id:string;var ickh:Integer; var gasvalue:double;
+            var fc:Byte;var tpsw:boolean;out ErrorDes:string):Boolean;
+  function InitICCard(psw:string;out ErrorDes:string):Boolean;
+  function CheckICPswd(psw:string;out ErrorDes:string):Boolean;
+  function CheckNewCard(out ErrorDes:string):Boolean;
+var
+  icdev:longint;
+  ecode:Integer;
+
+implementation
+
+function WriteUserCard(bh:integer;ql:Double;bqcs:Byte;srzl:integer;
+            psw:string;mmcd:Boolean;out ErrorDes:string): Boolean;
+var
+  status,st:integer;
+  password:array[0..3] of Char;
+  wbuff:TBuff;
+  //iQl:Integer;
+  strCardStyle: string;
+  strTmp:string;
+  ec:array[0..1] of Char;
+begin
+  Result:=False;
+  //检测读写器中是否有卡
+  status:=0;
+  st:=get_status(icdev,@status);
+  if st=0 then
+  begin
+    if status=0 then
+    begin
+      ErrorDes:='IC卡未插入';
+      ecode:=3;
+      dv_beep(icdev,1);
+      Exit;
+    end;
+  end else
+  begin
+    ErrorDes:='写卡器状态错误';
+    ecode:=2;
+    Exit;
+  end;
+  //检测是否4442卡
+  st:=chk_4442(icdev);
+  if st<>0 then
+  begin
+    ErrorDes:='卡类型不正确';
+    ecode:=4;
+    dv_beep(icdev,1);
+    Exit;
+  end;
+  //读密码错误计数，为0则表示卡已无法使用
+  st:=rsct_4442(icdev,ec);
+  if st<0 then
+  begin
+    ErrorDes:='读密码错误计数失败';
+    ecode:=6;
+    Exit;
+  end;
+  if ec[0]=chr(0) then
+  begin
+    ErrorDes:='该IC卡已无法继续使用';
+    ecode:=7;
+    Exit;
+  end;
+  //核对IC卡密码
+  st:=turn_off(icdev);
+  if st<>0 then
+  begin
+    ErrorDes:='对卡下电失败';
+    ecode:=15;
+    Exit;
+  end;
+  st:=turn_on(icdev);
+  if st<>0 then
+  begin
+    ErrorDes:='对卡上电失败';
+    ecode:=16;
+    Exit;
+  end;
+  if mmcd=false then            //非密码传递卡
+  begin
+    asc_hex(pchar(psw),password,3);
+    st:=csc_4442(icdev,3,password);
+    if st<>0 then
+    begin
+      ErrorDes:='IC卡密码核对错误';
+      ecode:=8;
+      Exit;
+    end;
+  end else                     //密码传递卡
+  begin
+    //asc_hex(pchar('b62307'),password,3);
+    password[0]:=chr($B6);
+    password[1]:=chr($23);
+    password[2]:=chr($07);
+    st:=csc_4442(icdev,3,password);
+    if st<>0 then
+    begin
+      ErrorDes:='IC卡密码核对错误';
+      ecode:= 8;
+      Exit;
+    end;
+    //此处需要修改IC卡密码
+    asc_hex(pchar(psw),password,3);
+    st:=wsc_4442(icdev,3,password);
+    if st<>0 then
+    begin
+      ErrorDes:='修改IC卡密码错误';
+      ecode:=9;
+      Exit;
+    end;
+  end;
+  //判断是否为工业表
+  if not ReadCardID(strCardStyle,ErrorDes) then
+    Exit;
+  strCardStyle:=Copy(strCardStyle,7,1);
+  //写卡........................
+  wbuff[0]:=chr($DD);
+  //ic卡编号
+  wbuff[1]:=chr(bh div 1000000);
+  wbuff[2]:=chr(bh div 10000 mod 100);
+  wbuff[3]:=chr(bh div 100 mod 100);
+  wbuff[4]:=chr(bh mod 100);
+  //密码区
+  if mmcd=true then
+  begin
+    wbuff[5]:=chr(StrToInt('$'+Copy(psw,1,2)));
+    wbuff[6]:=chr(StrToInt('$'+Copy(psw,3,2)));
+    wbuff[7]:=chr(StrToInt('$'+Copy(psw,5,2)));
+  end else
+  begin
+    wbuff[5]:=chr(0);
+    wbuff[6]:=chr(0);
+    wbuff[7]:=chr(0);
+  end;
+  //气量
+  strTmp:=Trim(format('%5.1f',[ql]));
+  strTmp:=StringOfChar('0',7-Length(strTmp))+strTmp;
+  if strCardStyle='1' then
+  begin
+    wbuff[8]:=chr(StrToInt(Copy(strTmp,1,2)));
+    wbuff[9]:=chr(StrToInt(Copy(strTmp,3,2)));
+    wbuff[10]:=chr(StrToInt(Copy(strTmp,5,1))*10+StrToInt(Copy(strTmp,7,1)));
+  end else
+  begin
+    wbuff[8]:=chr(StrToInt(Copy(strTmp,3,1)));
+    wbuff[9]:=chr(StrToInt(Copy(strTmp,4,2)));
+    wbuff[10]:=chr(StrToInt(Copy(strTmp,7,1)));
+  end;
+  //未用
+  wbuff[11]:=chr(0);
+  wbuff[12]:=chr(0);
+  wbuff[13]:=chr(0);
+  //输入总量区
+  strTmp:=Trim(format('%6d',[srzl]));
+  strTmp:=StringOfChar('0',6-Length(strTmp))+strTmp;
+  if strCardStyle='1' then
+  begin
+    wbuff[14]:=chr(StrToInt(Copy(strTmp,1,1)));
+    wbuff[15]:=chr(StrToInt(Copy(strTmp,2,2)));
+    wbuff[16]:=chr(StrToInt(Copy(strTmp,4,2)));
+  end else
+  begin
+    wbuff[14]:=chr(StrToInt(Copy(strTmp,1,2)));
+    wbuff[15]:=chr(StrToInt(Copy(strTmp,3,2)));
+    wbuff[16]:=chr(StrToInt(Copy(strTmp,5,2)));
+    end;
+  //未用
+  wbuff[17]:=chr(0);
+  //密码传递标志
+  if mmcd=true then
+    wbuff[18]:=chr($AA)
+  else
+    wbuff[18]:=chr(0);
+  //补气次数
+  wbuff[19]:=Chr(bqcs);
+  st:=swr_4442(icdev,32,20,wbuff);
+  if st<0 then
+  begin
+    ErrorDes:='写卡异常';
+    ecode:=10;
+    Exit;
+  end;
+  dv_beep(icdev,20);
+  Result:=True;
+end;
+
+function InitICCard(psw:string;out ErrorDes:string):Boolean;
+var
+  status,st:integer;
+  password:array[0..3] of Char;
+  wbuff:TBuff;
+  i:Integer;
+  ec:array[0..1] of Char;
+begin
+  Result:=False;
+  //检测读写器中是否有卡
+  status:=0;
+  st:=get_status(icdev,@status);
+  if st=0 then
+  begin
+    if status=0 then
+    begin
+      ErrorDes:='IC卡未插入';
+      ecode:= 3;
+      dv_beep(icdev,1);
+      Exit;
+    end;
+  end else
+  begin
+    ErrorDes:='写卡器状态错误';
+    ecode:=2;
+    Exit;
+  end;
+  //检测是否4442卡
+  st:=chk_4442(icdev);
+  if st<>0 then
+  begin
+    ErrorDes:='卡类型不正确';
+    ecode:=4;
+    dv_beep(icdev,1);
+    Exit;
+  end;
+  //读密码错误计数，为0则表示卡已无法使用
+  st:=rsct_4442(icdev,ec);
+  if st<0 then
+  begin
+    ErrorDes:='读密码错误计数失败';
+    ecode:=6;
+    Exit;
+  end;
+  if ec[0]=chr(0) then
+  begin
+    ErrorDes:='该IC卡已无法继续使用';
+    ecode:=7;
+    Exit;
+  end;
+  //核对IC卡密码
+  st:=turn_off(icdev);
+  if st<>0 then
+  begin
+    ErrorDes:='对卡下电失败';
+    ecode:=15;
+    Exit;
+  end;
+  st:=turn_on(icdev);
+  if st<>0 then
+  begin
+    ErrorDes:='对卡上电失败';
+    ecode:=16;
+    Exit;
+  end;
+  asc_hex(pchar(psw),password,3);
+  st:=csc_4442(icdev,3,password);
+  if st<>0 then
+  begin
+    ErrorDes:='IC卡密码核对错误';
+    ecode:=8;
+    Exit;
+  end;
+  //修改IC卡密码
+  //asc_hex(pchar('b62307'),password,3);
+  password[0]:=chr($B6);
+  password[1]:=chr($23);
+  password[2]:=chr($07);
+  st:=wsc_4442(icdev,3,password);
+  if st<>0 then
+  begin
+    ErrorDes:='修改IC卡密码错误';
+    ecode:=9;
+    Exit;
+  end;
+  //修改用户区数据
+  for i:=0 to 19 do
+    wbuff[i]:=chr(0);
+  wbuff[0]:=chr($DD);
+  wbuff[5]:=chr($AA);
+  wbuff[6]:=chr($AA);
+  wbuff[7]:=chr($AA);
+  st:=swr_4442(icdev,32,20,wbuff);
+  if st<0 then
+  begin
+    ErrorDes:='写卡异常';
+    ecode:=10;
+    Exit;
+  end;
+  dv_beep(icdev,20);
+  Result:=True;
+end;
+
+function ReadCardID(var id:string;out ErrorDes:string):Boolean;
+var
+  rbuff:TBuff;
+  st,status:Integer;
+  str:String;
+  i:Integer;
+begin
+  Result:=False;
+  //检测读写器中是否有卡
+  status:=0;
+  st:=get_status(icdev,@status);
+  if st=0 then
+  begin
+    if status=0 then
+    begin
+      ErrorDes:='IC卡未插入';
+      ecode:=3;
+      dv_beep(icdev,1);
+      Exit;
+    end;
+  end else
+  begin
+    ErrorDes:='写卡器状态错误';
+    ecode:=2;
+    Exit;
+  end;
+  //检测是否4442卡
+  st:=chk_4442(icdev);
+  if st<>0 then
+  begin
+    ErrorDes:='卡类型不正确';
+    ecode:=4;
+    dv_beep(icdev,1);
+    Exit;
+  end;
+  //读唯一标示号
+  st:=srd_4442(icdev,10,6,rbuff);
+  if st<>0 then
+  begin
+    ErrorDes:='读卡异常';
+    ecode:=11;
+    Exit;
+  end;
+  id:='';
+  for i:=0 to 5 do
+  begin
+    str:=Trim(format('%2x',[Ord(rbuff[i])]));
+    str:=StringOfChar('0',2-(Length(str)))+str;
+    id:=id+str;
+  end;
+  Result:=True;
+end;
+
+function ReadUserCard(var id:string;var ickh:Integer; var gasvalue:double;
+            var fc:Byte;var tpsw:boolean;out ErrorDes:string):Boolean;
+var
+  rbuff:TBuff;
+  st,status:Integer;
+  str:String;
+  i:Integer;
+  strCardStyle: string;
+begin
+  Result:=False;
+  //检测读写器中是否有卡
+  status:=0;
+  st:=get_status(icdev,@status);
+  if st=0 then
+  begin
+    if status=0 then
+    begin
+      ErrorDes:='IC卡未插入';
+      ecode:=3;
+      dv_beep(icdev,1);
+      Exit;
+    end;
+  end else
+  begin
+    ErrorDes:='写卡器状态错误';
+    ecode:=2;
+    Exit;
+  end;
+  //检测是否4442卡
+  st:=chk_4442(icdev);
+  if st<>0 then
+  begin
+    ErrorDes:='卡类型不正确';
+    ecode:=4;
+    dv_beep(icdev,1);
+    Exit;
+  end;
+  //读唯一标示号
+  st:=srd_4442(icdev,10,6,rbuff);
+  if st<>0 then
+  begin
+    ErrorDes:='读卡异常';
+    ecode:=11;
+    Exit;
+  end;
+  id:='';
+  for i:=0 to 5 do
+  begin
+    str:=Trim(format('%2x',[Ord(rbuff[i])]));
+    str:=StringOfChar('0',2-(Length(str)))+str;
+    id:=id+str;
+  end;
+  strCardStyle:=Copy(id,7,1);
+  //读卡上用户数据
+  st:=srd_4442(icdev,32,20,rbuff);
+  if st<>0 then
+  begin
+    ErrorDes:='读卡异常';
+    ecode:=11;
+    Exit;
+  end;
+  if rbuff[0]<>Chr($DD) then
+  begin
+    ErrorDes:='非用户卡';
+    ecode:=5;
+    Exit;
+  end;
+  ickh:=Ord(rbuff[1])*1000000+Ord(rbuff[2])*10000+Ord(rbuff[3])*100+Ord(rbuff[4]);
+  if strCardStyle='0'then
+    gasvalue:=Ord(rbuff[8])*100+Ord(rbuff[9])+Ord(rbuff[10])/10;
+  if strCardStyle='1' then
+    gasvalue:=Ord(rbuff[8])*1000+Ord(rbuff[9])*10+Ord(rbuff[10])/10;
+  fc:=Ord(rbuff[19]);
+  if rbuff[18]=chr($AA) then
+    tpsw:=True
+  else
+    tpsw:=False;
+  dv_beep(icdev,20);  
+  Result:=true;    
+end;
+
+function CheckICPswd(psw:string;out ErrorDes:string):Boolean;
+var
+  st,status:Integer;
+  password:array[0..3] of Char;
+  ec:array[0..1] of Char;
+begin
+  Result:=False;
+  //检测读写器中是否有卡
+  status:=0;
+  st:=get_status(icdev,@status);
+  if st=0 then
+  begin
+    if status=0 then
+    begin
+      ErrorDes:='IC卡未插入';
+      ecode:=3;
+      dv_beep(icdev,1);
+      Exit;
+    end;
+  end else
+  begin
+    ErrorDes:='写卡器状态错误';
+    ecode:=2;
+    Exit;
+  end;
+  //检测是否4442卡
+  st:=chk_4442(icdev);
+  if st<>0 then
+  begin
+    ErrorDes:='卡类型不正确';
+    ecode:=4;
+    dv_beep(icdev,1);
+    Exit;
+  end;
+  //读密码错误计数，为0则表示卡已无法使用
+  st:=rsct_4442(icdev,ec);
+  if st<0 then
+  begin
+    ErrorDes:='读密码错误计数失败';
+    ecode:= 6;
+    Exit;
+  end;
+  if ec[0]=chr(0) then
+  begin
+    ErrorDes:='该IC卡已无法继续使用';
+    ecode:= 7;
+    Exit;
+  end;
+  //核对密码
+  st:=turn_off(icdev);
+  if st<>0 then
+  begin
+    ErrorDes:='对卡下电失败';
+    ecode:=15;
+    Exit;
+  end;
+  st:=turn_on(icdev);
+  if st<>0 then
+  begin
+    ErrorDes:='对卡上电失败';
+    ecode:=16;
+    Exit;
+  end;
+  password[0]:=chr(StrToInt('$'+Copy(psw,1,2)));
+  password[1]:=chr(StrToInt('$'+Copy(psw,3,2)));
+  password[2]:=chr(StrToInt('$'+Copy(psw,5,2)));
+  //asc_hex(pchar(psw),password,3);
+  st:=csc_4442(icdev,3,password);
+  if st<>0 then
+  begin
+    ErrorDes:='IC卡密码核对错误';
+    ecode:=8;
+    Exit;
+  end;
+  Result:=True;
+end;
+
+function CheckNewCard(out ErrorDes:string):Boolean;
+var
+  st:integer;
+  rbuff:TBuff;
+  iYwbh:integer;
+begin
+  Result:=False;
+  st:=srd_4442(icdev,32,20,rbuff);
+  if st<>0 then
+  begin
+    ErrorDes:='读卡异常';
+    ecode:=11;
+    Exit;
+  end;
+  if rbuff[0]<>Chr($DD) then
+  begin
+    ErrorDes:='非用户卡';
+    ecode:= 5;
+    Exit;
+  end;
+  iYwbh:=Ord(rbuff[1])*1000000+Ord(rbuff[2])*10000+Ord(rbuff[3])*100+Ord(rbuff[4]);
+  if iYwbh<>0 then
+  begin
+    ErrorDes:='IC卡用户编号存在';
+    ecode:=12;
+    Exit;
+  end;
+  Result:=CheckICPswd('b62307',ErrorDes);
+end;
+end.
+ 
+
+

@@ -1,0 +1,5 @@
+1.IsLYCard 2.WritePCard 3.WriteUCard 4.InitCard 5.ReadUCard 6.NewCardCheck 7.CheckPswd 0:退出
+>>请输入密码：
+请输入用户编号：
+write user card ok.(before info:userID=123 passwd=123456 gasValue=900.000000 bqcs=0)
+write user card ok.(after info:userID=123 passwd=123456 gasValue=900.000000 bqcs=0)

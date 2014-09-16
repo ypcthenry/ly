@@ -1,0 +1,15 @@
+# a ini file for star and gg.
+#
+# Set data transfer mode. 0 -- Hex mode, 1 -- ASCII mode. The default value is 1.
+MODE=1
+#
+# If no terminal, make the next line useful
+PATH=/dev/ttyS0
+#
+SETAUX=\033!0;0;0;0Y\033[/54l\033[/53h\033[/50h
+INITAUX=\033[/50h\033[/53h\033[/54l
+CLOSEAUX=\033[/50l
+WRITEAUX=\033[/51h
+AUXENDWRITE=\033[/51l
+DISABLEKEYBOARD=\033[2h
+ENABLEKEYBOARD=\033[2l

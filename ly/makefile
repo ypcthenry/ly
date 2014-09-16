@@ -1,0 +1,4 @@
+sotest : lycard_test.c
+	gcc -I. -L. -lmwic -lLYCard  -o $@ $< 
+	export LD_LIBRARY_PATH=.:$$LD_LIBRARY_PATH	
+	echo "运行./sotest前进入超级管理用户，先执行：上条 export 命令"

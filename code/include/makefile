@@ -1,0 +1,20 @@
+#通过以下命令把指定目录设定为动态链接库搜索目录：
+#export LD_LIBRARY_PATH=./lib:$LD_LIBRARY_PATH
+image :
+	gcc -c -o LYCard_util.o LYCard_util.c
+	gcc -c -o LYCard_accessor.o LYCard_accessor.c
+	gcc -c -o LYCard.o LYCard.c
+#静态链接库
+#ar rcs libLYCard.a LYCard_util.o LYCard_accessor.o  LYCard.o mwic.a #correct
+#ar rcs libLYCard.a LYCard_util.o LYCard_accessor.o mcux_ic.o LYCard.o #correct
+#动态链接库
+	gcc -shared -o libLYCard.so LYCard_util.o LYCard_accessor.o LYCard.o #correct
+
+#测试
+#静态链接库测试
+#gcc -c -o lycard_test.o lycard_test.c
+#gcc -o atest lycard_test.c libLYCard.a
+#动态链接库测试
+	gcc  -o sotest lycard_test.c -I. -L. -L../lib -lLYCard -lmwic #注意该编译命令，动态链接库必须位于后面，且被调用动态链接库（被调用者）必须位于调用链接库（调用者）的后面
+
+

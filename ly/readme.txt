@@ -1,0 +1,19 @@
+1.star500x(配置文件，必须有)
+     该文件中的PATH用于指名串口设备，如本机器的是（"/dev/ttyS0"）；这需要跟windows的区别开，windows中设备都是用数字表示的，而linux的所有设备都作为文件来处理的。所以，对应ic_init第一个参数在linux下是设备文件的绝对路径，就是PATH表示的值；而windows下这个参数是一个数字，串口1，2，，，n对应与0，1，，，n-1
+
+2.由于要读写串口，所以必须是在管理账户下才可以执行程序
+
+3.利用动态链接库编程
+    3.1 创建test.c
+    3.2 test.c中include头文件"LYCard.h"
+    3.3 gcc -I. -L. -lmwic -lLYCard -o test test.c
+    3.4 su （由于要读写串口，所以运行程序前要登陆超级用户）
+    3.5 ./test (如果有问题解决方法之一为：重启读卡器)
+        如果出错，一般是动态链接库没有找到，可通过命令：
+          ldd test
+        查看,会出现问题：“libLYCard.so => not found”。
+        
+        解决该问题可以通过以下命令：
+          export LD_LIBRARY_PATH=<libLYCard.so的绝对路径或者相对路径>:$LD_LIBRARY_PATH
+        
+        *需要注意的是，每次执行程序，进入超级管理员用户，都要执行上面export命令

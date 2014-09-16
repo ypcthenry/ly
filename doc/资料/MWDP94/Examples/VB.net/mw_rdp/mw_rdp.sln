@@ -1,0 +1,21 @@
+Microsoft Visual Studio Solution File, Format Version 8.00
+Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "mw_rdp", "mw_rdp\mw_rdp.vbproj", "{46911468-DB08-4B2B-9DD8-9C68160F2294}"
+	ProjectSection(ProjectDependencies) = postProject
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfiguration) = preSolution
+		Debug = Debug
+		Release = Release
+	EndGlobalSection
+	GlobalSection(ProjectConfiguration) = postSolution
+		{46911468-DB08-4B2B-9DD8-9C68160F2294}.Debug.ActiveCfg = Debug|.NET
+		{46911468-DB08-4B2B-9DD8-9C68160F2294}.Debug.Build.0 = Debug|.NET
+		{46911468-DB08-4B2B-9DD8-9C68160F2294}.Release.ActiveCfg = Release|.NET
+		{46911468-DB08-4B2B-9DD8-9C68160F2294}.Release.Build.0 = Release|.NET
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+	EndGlobalSection
+	GlobalSection(ExtensibilityAddIns) = postSolution
+	EndGlobalSection
+EndGlobal

@@ -1,0 +1,9 @@
+/*自己实现的通用函数*/
+int TryStr2Int(int iyr,const char *str);
+char* Int2Str(char *str,const int i);
+char* Char2Hex(char *str,const int i);
+char* Float2Str(char *str,const float f);
+char *Trim(char *str);
+/*从字符串str的begin位置开始，插入length个字符ch，原字符串后移*/
+char *InsertStr(char *str,char ch,int begin,int length);
+char *StringNCopy(char *des,char *src,int begin,int count);

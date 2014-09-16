@@ -1,0 +1,631 @@
+#include "sdtlib.h"
+#include "string.h"
+
+typedef char u8;
+
+#define BUFFER_SIZE 50
+#define USER_CARD_FLAG 0xDD
+#define MMCD_FLAG 0xAA
+#define INIT_USER_CARD_OFFSET 32
+#define INIT_USER_CARD_LENGTH 20
+#define WRITE_USER_CARD_OFFSET 32
+#define WRITE_USER_CARD_LENGTH 20
+#define READ_CARD_ID_OFFSET 10
+#define READ_CARD_ID_LENGTH 6
+
+const char[] NLYSID="FFFFFFFFFFFF";
+const char[] INIT_PASSWORD="b62307"
+
+
+static int icdev;
+static int result;//Result
+static int errorCode;//ecode
+
+static char[][] errorInfo={
+    /*0*/"一切正常",
+    /*1*/"写卡器未连接",
+    /*2*/"写卡器状态错误",
+    /*3*/"IC卡未插入",
+    /*4*/"卡类型不正确",
+    /*5*/"",
+    /*6*/"读密码错误计数失败",
+    /*7*/"该IC卡已无法继续使用",
+    /*8*/"IC卡密码核对错误",
+    /*9*/"修改IC卡密码错误",
+    /*10*/"写卡异常",
+    /*11*/"读卡异常",
+    /*12*/"",
+    /*13*/"卡用户编号错误",
+    /*14*/"非蓝焰IC卡",
+    /*15*/"对卡下电失败",
+    /*16*/"对卡上电失败",
+    /*17*/"",
+    /*18*/"",
+    /*19*/"",
+    /*20*/""
+};
+
+/*自己实现的通用函数*/
+int TryStr2Int(int iyr,const char *str);
+char* Int2Str(char *str,const int i);
+char* Char2Hex(char *str,const int i);
+char* Float2Str(char *str,const float f);
+char *Trim(char *str);
+/*从字符串str的begin位置开始，插入length个字符ch，原字符串后移*/
+char *InsertStr(char *str,char ch,int begin,int length);
+char *StringNCopy(char *des,char *src,int begin,int count);
+
+/*没有实现参考的，可能是该应用提供的库函数*/
+int auto_int(u8 port,int br);
+int get_status(int icdev,int *status);
+void dv_beep(int icdev,int time);
+char* asc_hex(const char *src,char *des,int count);
+
+
+/*自己实现与该项目相关的具体函数*/
+static bool InitICCard(char *psw,char *eInfo);
+static bool WriteUserCard(int bh,double ql,u8 bqcs,int srzl,char *psw,bool mmcd,char eInfo);
+static bool ReadCardID(char *sid,char *eInfo);
+static bool ReadUserCard(char *id,int ickh,double gasValue,u8 fc,bool tpsw,char *eInfo);
+static bool CheckICPswd(char *psw,char *eInfo);
+static bool CheckNewCard(char *eInfo);
+static bool CheckCardStatus(char *psw,bool mmcd);
+
+static void SetUserCardFlag(char *des,char flag);
+static void SetUserCardBH(char *sBH,int bh,int count);
+static void SetUserCardPswd(char *d_psw, const char *s_psw,int count);
+static void SetUserCardQL(char *sQL,double ql, char cardStyle);
+static void SetUserCardSRZL(char *sSRZL,int srzl,char cardStyle);
+/*注释样板*/
+/*
+功能：
+    
+参数：
+    
+返回值：
+    
+*/
+
+/*
+功能：
+    判断是否为蓝焰IC卡
+参数：
+    
+返回值：
+    
+*/
+void IsLYCard(u8 port,int br,char *eInfo){
+    char *sid;
+    char *strE;
+    int iyr;
+
+    if(icdev<=0){
+        icdev=auto_init(port,br);
+    }
+
+    if(icdev<=0){
+        errorCode=1;
+        strcpy(eInfo,errorInfo[errorCode]);
+        return;
+    }
+    if(!ReadCardID(sid,strE)){
+        /* errorInfo=strE; */
+        /* resust=errorCode; */
+        strcpy(eInfo,errorInfo[errorCode]);
+        return;
+    }
+    if(strcpy(sid,NLYSID)){
+        errorCode=14;
+        strcpy(eInfo,errorInfo[errorCode]);
+        return;
+    }
+    if(!TryStrToInt(Copy(sid,3,2),iyr)){
+        errorCode=14;
+        strcpy(eInfo,errorInfo[errorCode]);
+        return;
+    }
+    if(0<iyr || iyr>99){
+        errorCode=14;
+        strcpy(eInfo,errorInfo[errorCode]);
+    }
+    errorCode=0;
+}
+
+/*
+功能：
+    写密码传递卡  
+参数：
+    
+返回值：
+    
+*/
+void WritePCard(u8 part,int br,char *ickh,char *icpsw,double gasValue,u8 fc,int sum,char *eInfo){
+    char *strE;
+    int iYwbh;
+
+    if(icdev<=0){
+        icdev=auto_init(port,br);
+    }
+    if(icdev<=0){
+        errorCode=1;
+        strcpy(eInfo,errorInfo[errorCode]);
+        return;
+    }
+    if(!TryStrToInt(Trim(ickh),iYwbh)){
+        errorCode=13;
+        strcpy(eInfo,errorInfo[errorCode]);
+        return;
+    }
+    if(!WriteUserCard(iYwbh,gasValue,fc,sum,icpsw,true,strE)){
+        /* EDes:=PChar(strE); */
+        /* Result:=ecode; */
+        /* Exit; */
+        strcpy(eInfo,errorInfo[errorCode]);
+        return;
+    }
+    errorCode=0;
+}
+
+/*
+功能：
+    写正常充值卡  
+参数：
+    
+返回值：
+    
+*/
+void WriteUCard(u8 part,int value,char *ickh,char icpsw,double gasValue,u8 fc,char *eInfo){
+    char *strE;
+    int iYwbh;
+
+    if(icdev<=0){
+        icdev=auto_init(port,br);
+    }
+    if(icdev<=0){
+        errorCode=1;
+        strcpy(eInfo,errorInfo[errorCode]);
+        return;
+    }
+    if(!TryStrToInt(Trim(ickh),iYwbh)){
+        errorCode=13;
+        strcpy(eInfo,errorInfo[errorCode]);
+        return;
+    }
+    if(!WriteUserCard(iYwbh,gasValue,fc,0,icpsw,fasle,strE)){
+        /*
+          EDes:=PChar(strE);
+          Result:=ecode;
+          Exit;
+        */
+        strcpy(eInfo,errorInfo[errorCode]);
+        return ;
+    }
+    errorCode=0;
+}
+
+
+/*
+功能：
+    读用户卡  
+参数：
+    
+返回值：
+    
+*/
+void ReadUCard(u8 port,int br,char *id,char *ickh,char *gasValue,char *fc,char *tpsw,char *factoryID,char *eInfo){
+    char *str,*strE,*cid;
+    int iYwbh;
+    double gGasValue;
+    u8 bqcs;
+    bool mmcd;
+
+    if(icdev<=0){
+        icdev=auto_init(port,br);
+    }
+    if(icdev<=0){
+        errorCode=1;
+        strcpy(eInfo,errorInfo[errorCode]);
+        return;
+    }
+    if(!ReadUserCard(cid,iYwbh,gGasValue,bqcs,mmcd,strE)){
+        /* 
+           EDes:=PChar(strE);
+           Result:=ecode;
+           Exit;
+         */
+        strcpy(eInfo,errorInfo[errorCode]);
+        return;
+    }
+
+    strcpy(factoryID,facID);
+    strcpy(id,cid);
+    strcpy(str,Trim(Int2Str(iywbh)));
+    InsertStr(str,'0',0,8-strlen(str));
+    ickh=str;
+    strcpy(gasValue,Trim(Float2Str(gGasvalue)));
+    strcpy(fc,Int2Str(bqcs));
+    if(mmcd==true){
+        tpsw="1";
+    }else{
+        tpsw="0";
+    }
+    errorCode=0;
+}
+
+/*
+功能：
+    初始化卡
+参数：
+    
+返回值：
+    
+*/
+void InitCard(u8 port,int br,char *pcpsw,char *eInfo){
+    char *strE;
+    if(icdev<=0){
+        icdev=auto_init(port,br);
+    }
+
+    if(icdev<=0){
+        errorCode=1;
+        strcpy(eInfo,errorInfo[errorCode]);
+        return;
+    }
+    if(!InitICCard(icpws,strE)){
+        /*
+          EDes:=PChar(strE);
+          Result:=ecode;
+          Exit;
+         */
+        strcpy(eInfo,errorInfo[errorCode]);
+        return;
+    }
+    errorCode=0;
+}
+
+/*
+功能：
+    新卡核对
+参数：
+    
+返回值：
+    
+*/
+void NewCardCheck(u8 port,int br,char *eInfo){
+    char *strE;
+    if(icdev<=0){
+        icdev=auto_init(port,br);
+    }
+
+    if(icdev<=0){
+        errorCode=1;
+        strcpy(eInfo,errorInfo[errorCode]);
+        return;
+    }
+    if(!CheckNewCard(strE)){
+        /*
+          EDes:=PChar(strE);
+          Result:=ecode;
+          Exit;
+         */
+        strcpy(eInfo,errorInfo[errorCode]);
+        return;
+    }
+    errorCode=0;
+}
+
+/*
+功能：
+    判断是否为蓝焰IC卡
+参数：
+    
+返回值：
+    
+*/
+void CheckPsw(u8 port,int br,char *icpsw,char *eInfo){
+    char *strE;
+
+    if(icdev<=0){
+        icdev=auto_init(port,br);
+    }
+
+    if(icdev<=0){
+        errorCode=1;
+        strcpy(eInfo,errorInfo[errorCode]);
+        return;
+    }
+    if(!CheckICPswd(icpsw,strE)){
+        /*
+          EDes:=PChar(strE);
+          Result:=ecode;
+          Exit;
+         */
+        strcpy(eInfo,errorInfo[errorCode]);
+        return;
+    }
+    errorCode=0;
+}
+
+/*
+功能：
+    初始化用户卡
+参数：
+    
+返回值：
+    
+*/
+static bool InitICCard(char *psw,char *eInfo){
+    int status,st;
+    char[3] password;
+    char[BUFFER_SIZE] wbuff;
+    char[2] ec;
+    int i;
+    
+    CheckCardStatus(psw,false);
+    if(errorCode!=0){
+        return;
+    }
+    /*修改IC卡密码*/
+    asc_hex(INIT_PASSWORD,password,3);
+    st=wsc_4442(icdev,3,password);
+    if(st!=0){
+        errorCode=9;
+        return;
+    }
+    /*修改用户区数据*/
+    for(i=0;i<INIT_USER_CARD_LENGTH;i++){
+        wbuff[i]=0;
+    }
+    wbuff[0]=USER_CARD_FLAG;
+    wbuff[5]=0xAA;
+    wbuff[6]=0xAA;
+    wbuff[7]=0xAA;
+    st=swr_4442(icdev,INIT_USER_CARD_OFFSET,INIT_USER_CARD_LENGTH,wbuff);
+    if(st!=0){
+        errorCode=10;
+        return;
+    }
+    dv_beep(icdev,20);
+    errorCode=0;
+}
+/*
+功能：
+    
+参数：
+    bh：用户编号
+    ql：气量
+    bqcs：补气次数
+    srzl：剩余总量
+    psw：密码
+    mmcd：密码传递
+    eInfo：错误信息
+返回值：
+    
+*/
+static void WriteUserCard(int bh,double ql,u8 bqcs,int srzl,char *psw,bool mmcd,char *eInfo){
+    int status,st;
+    char password[3];
+    char wbuff[BUFFER_SIZE];
+    char strCardStyle[5];
+    char strTmp[5];
+    char ec[2];
+
+    CheckCardStatus(psw,mmcd);
+    if(errorCode!=0)
+        return;
+    
+    /*判断是否为工业表*/
+    if(!ReadCardID(strCardStyle,eInfo)){
+        return;
+    }
+    StringNCopy(strCardStyle,strCardStyle,7,1);
+
+    /*写卡*/
+    /*用户卡*/
+    wbuff[0]=USER_CARD_FLAG;
+    /*用户编号*/
+    SetUserBH(&wbuff[1],bh,4);
+    /*密码*/
+    if(mmcd){
+        asc_hex(psw,wbuff[5],3);
+    }
+    else{
+        wbuff[5]=0;
+        wbuff[6]=0;
+        wbuff[7]=0;
+    }
+    /*用户卡气量wbuff[8-10]*/
+    SetUserCardQL(&wbuff[8],ql,strCardStyle);
+    /*未用*/
+    wbuff[11]=0;
+    wbuff[12]=0;
+    wbuff[13]=0;
+    /*输入总量区*/
+    SetUserCardSRZL(&wbuff[14],srzl,cardStyle);
+    /*未用*/
+    wbuff[17]=0;
+    /*密码传递标志*/
+    if(mmcd){
+        wbuff[18]=MMCD_FLAG;
+    }
+    else{
+        wbuff[18]=0;
+    }
+    /*补气次数*/
+    wbuff[19]=(char)bqcs;
+    st=swr_4442(icdev,WRITE_USER_CARD_OFFSET,INIT_USER_CARD_LENGTH,wbuff);
+    if(st!=0){
+        errorCode=10;
+        return;
+    }
+    dv_beep(icdev,20);
+    errorCode=0;
+}
+
+
+static bool ReadCardID(char *sid,char *eInfo){
+    int st,status;
+    int i;
+
+    /*检测读写器中是否有卡*/
+    status=0;
+    st=get_status(icdev,&status);
+    if(st==0){
+        if(status==0){
+            errorCode=3;
+            dv_deep(icdev,1);
+            return;
+        }
+    }
+    else{
+        errorCode=2;
+    }
+    
+    /*检测是否4442卡*/
+    st=chk_442(icdev);
+    if(st!=0){
+        errorCode=4;
+        dv_beep(icdev,1);
+        return;
+    }
+    /*读唯一标示号*/
+    st=srd_4442(icdev,READ_CARD_ID_OFFSET,READ_CARD_ID_LENGTH,rbuff);
+    if(st!=0){
+        errorCode=11;
+        return;
+    }
+    /*
+      
+      id:='';
+      for i:=0 to 5 do
+      begin
+         str:=Trim(format('%2x',[Ord(rbuff[i])]));
+         str:=StringOfChar('0',2-(Length(str)))+str;
+         id:=id+str;
+      end;
+     */
+    for(i=0;i<READ_CARD_ID_LENGTH;i++){
+        Char2Hex(str,rbuff[i]);
+        strncpy(id+2*i,str,2);
+    }
+    errorCode=0;
+}
+
+
+
+
+static bool CheckCardStatus(char *psw,bool mmcd){
+    int status,st;
+    char password[3];
+    char strCardStyle[5];
+    char strTmp[5];
+    char ec[2];
+
+    /*检测读写器中是否有卡*/
+    status=0;
+    st=get_status(icdev,&status);
+    if(st==0){
+        if(status==0){
+            errorCode=3;
+            dv_beep(icdev,1);
+            return;
+        }
+    }
+    else{
+        errorCode=2;
+    }
+    
+    /*检测是否4442卡*/
+    st=chk_4442(icdev);
+    if(st!=0){
+        errorCode=4;
+        dv_beep(icdev,1);
+        return;
+    }
+    /*读密码错误计数，为0则表示卡已无法使用*/
+    st=rsct_4442(icdev,ec);
+    if(st<0){
+        errorCode=6;
+        return;
+    }
+    if(ec[0]==0){
+        errorCode=7;
+        return;
+    }
+
+    /*核对IC卡密码*/
+    st=turn_off(icdev);
+    if(st!=0){
+        errorCode=15;
+        return;
+    }
+    st=turn_on(icdev);
+    if(st!=0){
+        errorCode=16;
+        return;
+    }
+
+    if(!mmcd){/*非密码传递卡*/
+        asc_hex(psw,password,3);
+        st=csc_4442(icdev,3,password);
+        if(st!=0){
+            errorCode=8;
+            return;
+        }
+    }
+    else{/*密码传递卡*/
+        asc_hex(INIT_PASSWORD,password,3);
+        st=csc_4442(icdev,3,password);
+        if(st!=0){
+            errorCode=8;
+            return;
+        }
+        asc_hex(psw,password,3);
+        st=wsc_4442(icdev,3,password);
+        if(st!=0){
+            errorCode=9;
+            return;
+        }
+    }
+    errorCode=0;
+}
+static void SetUserCardQL(char *sQL,double ql, char cardStyle){
+    int partQL=0;
+    if(cardStyle=='1'){/*该部分作用？？cardStyle=1表示什么？？*/
+        partQL=(int)ql/100;
+        *sQL=partQL;
+
+        partQL=(int)ql % 100;
+        assert(0<=partQL && partQL<=99);
+        *(sQL+1)=partQL;
+        
+        partQL=int(ql*100) %100;
+        *(sQL+2)=partQL;
+    }
+    else{
+        partQL=(int)ql/100 % 10;
+        assert(0<=partQL && partQL<=9);
+        *sQL=partQL;
+
+        partQL=(int)ql % 100;
+        assert(0<=partQL && partQL<=99);
+        *(sQL+1)=partQL;
+        
+        partQL=int(ql*10) %10;
+        assert(0<=partQL && partQL<=9);
+        *(sQL+2)=partQL;
+    }
+}
+
+
+static void SetUserCardSRZL(char *sSRZL,int srzl,char cardStyle){
+    int partSRZL;
+    partSRZL=srzl/10000;
+    if(charStyle=='1'){
+        assert(0<=partSRZL && partSRZL<=9);
+    }
+    *(sSRZL)=partSRZL;
+
+    *(sSRZL+1)=(srzl / 100) %100;
+    *(sSRZL+2)=(srzl % 100);
+}
